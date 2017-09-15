@@ -3,8 +3,6 @@ colorscheme Tomorrow-Night
 " Turn on automatic indentation
 filetype plugin indent on
 
-" Enable syntax
-syntax enable
 
 " Enable modelines
 set modelines=2
@@ -16,6 +14,9 @@ set modelines=2
 silent! if plug#begin('~/.vim/plugged')
 
 " Status
+Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
+Plug 'hinshun/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -83,9 +84,6 @@ set laststatus=2
 
 " Enable unicode
 set encoding=utf-8
-
-" Init colorscheme
-silent! colorscheme Tomorrow-Night
 
 " Turn on line number
 set number
@@ -258,8 +256,8 @@ nnoremap <leader>ps :PlugStatus<cr>
 " <Leader>nt: Toggle file system explorer
 nnoremap <Leader>nt :NERDTreeToggle<cr>
 
-" <Leader>ag: Fast content searching
-nnoremap <Leader>ag :Ag<space>
+" <Leader>rg: Fast content searching
+nnoremap <Leader>ag :Rg -i<space>
 
 " <Leader>ge: Git edit
 nnoremap <Leader>ge :Gedit<CR>
@@ -285,6 +283,9 @@ xmap <Leader>r <Plug>(FNR)
 
 " <Leader>z: Toggle zoom by alternating between tabs and splits
 nnoremap <silent> <leader>z :call <sid>zoom()<cr>
+" switch between tabs
+nnoremap <Leader>n :tabn<CR>
+nnoremap <Leader>p :tabp<CR>
 
 " <Leader>c: Close quickfix window
 nnoremap <leader>c :cclose<bar>lclose<cr>
@@ -317,6 +318,9 @@ au FileType go nmap <Leader>oe <Plug>(go-rename)
 " Non-leader Key Mappings
 "===============================================================================
 
+" Copy to Clipboard
+map <C-c> "+y<CR>
+
 " U: Undo tree
 nnoremap U :UndotreeToggle<CR>
 
@@ -335,6 +339,9 @@ xnoremap <silent> <C-k> :move-2<cr>gv
 xnoremap <silent> <C-j> :move'>+<cr>gv
 xnoremap <silent> <C-h> <gv
 xnoremap <silent> <C-l> >gv
+
+" Autocomplete in INSERT mode
+inoremap <C-Space> <C-x><C-o>
 
 " ]q: Next quickfix
 nnoremap ]q :cnext<cr>zz
@@ -359,6 +366,9 @@ imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " <C-x><C-l>: Autocomplete from visible tmux
 inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
+
+" search in visual mode
+vnoremap // y/<C-R>"<CR>
 
 "===============================================================================
 " Functions
@@ -408,11 +418,30 @@ augroup END
 "===============================================================================
 " Plugin Settings
 "===============================================================================
+" This line enables the true color support.
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" Set the background theme to dark
+set background="dark"
+
+" Enable syntax
+syntax enable
+
+" Call the theme one
+colorscheme OceanicNext
+
+" Don't forget set the airline theme as well.
+let g:airline_theme='oceanicnext'
+
 
 " scrooloose/nerdtree
 let NERDTreeShowBookmarks = 1
 let NERDTreeShowHidden = 1
-let NERDTreeIgnore = ['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore = ['\~$', '\.swp$', '\.hg', '\.svn', '\.bzr']
 
 " scrooloose/syntastic
 let g:syntastic_check_on_open = 1
@@ -451,9 +480,10 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
 
 " hinshun/fzf.vim
-" let $FZF_DEFAULT_COMMAND = 'ag -l --ignore goartifacts -g ""'
+let FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 let g:fzf_layout = { 'window': '-tabnew' }
 " let g:fzf_layout = { 'window': 'enew' }
 command! Plugs call fzf#run({
@@ -482,7 +512,6 @@ let g:airline_mode_map = {
   \ 'c'  : 'C',
   \ 'v'  : 'V',
   \ 'V'  : 'V-L',
-  \ '' : 'V-B',
   \ 's'  : 'S',
   \ 'S'  : 'S',
   \ '' : 'S',

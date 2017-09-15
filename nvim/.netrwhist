@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/sid/Downloads/docker-client-master/src/main/java/com/spotify/docker/client'
+let g:netrw_dirhist_2='/home/sid/gocode/src/github.com/docker/dhe-deploy/gocode/dtr/cmd/tagmigration'
+let g:netrw_dirhist_3='/home/sid/gocode/src/github.com/docker/dhe-deploy/gocode/dtr/cmd'
+let g:netrw_dirhist_4='/home/sid/gocode/src/github.com/docker/dhe-deploy/gocode/dtr/cmd/bloblinkmigration'
+let g:netrw_dirhist_5='/home/sid/gocode/src/github.com/dockersid'
+let g:netrw_dirhist_6='/home/sid/.tmux'
+let g:netrw_dirhist_7='/home/sid/gocode/src/github.com/dockersid/dindv2c'

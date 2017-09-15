@@ -1,0 +1,8 @@
+general {
+  colors = true
+  color_good = "#51ca7e" color_degraded = "#fbd25d"
+  color_bad = "#de8f91"
+  interval = 10
+}
+
+order += "battery 0"

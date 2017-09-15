@@ -1,0 +1,2 @@
+3.0
+{'neobundle.vim': {'checked_time': 1494205305, 'installed_uri': 'https://github.com/Shougo/neobundle.vim.git', 'installed_path': '/home/sid/.config/nvim/bundle/neobundle.vim', 'revisions': {}, 'updated_time': 1494205305}, 'vim-gitgutter': {'checked_time': 1494205306, 'installed_uri': 'https://github.com/airblade/vim-gitgutter.git', 'installed_path': '/home/sid/.config/nvim/bundle/vim-gitgutter', 'revisions': {'1493428389': 'b803a28f47b26d16f5fe9e747850992c9985c667'}, 'updated_time': '1493428389'}}
